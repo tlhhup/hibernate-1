@@ -1,0 +1,31 @@
+<!DOCTYPE hibernate-mapping PUBLIC 
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <!-- 指名该映射文件对应的实体类
+    	table:数据库中对应的表的名称
+     -->
+    <class name="com.hibernate.entity.User" table="users">
+        <!-- 标识主键的属性 -->
+        <id name="id" column="id" type="int">
+            <!-- 主键生成策略
+            	identity:自增长
+            	uuid：string类型的数据
+             -->
+            <generator class="identity"/>
+        </id>
+        <!-- 普通属性 -->
+        <property name="userName" column="userName" length="20" type="string"/>
+        <property name="password" column="password" length="20" type="string"/>
+        <property name="address" column="address" length="20" type="string"/>
+        <property name="tel" column="tel" length="20" type="string"/>
+        <property name="number" column="number" type="string"/>
+        <property name="note">
+            <!-- 
+            	column属性和colum节点不能同时使用
+            	sql-teyp：数据库中的数据类型
+             -->
+            <column name="note" sql-type="varchar(600)"/>
+        </property>
+    </class>
+</hibernate-mapping>  

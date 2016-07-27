@@ -1,0 +1,20 @@
+<!DOCTYPE hibernate-mapping PUBLIC 
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="com.hibernate.entity.Teacher" table="teachers">
+        <id name="id" column="id" type="int">
+            <generator class="identity"/>
+        </id>
+        <property name="name" column="name" type="string" length="20"/>
+        <property name="address" column="address" type="string" length="20"/>
+        
+        <!-- 与学生的一对多关系 
+        	lazy:执行查询教师记录的时候就一并查询学生表中的数据得到学生的信息
+        -->
+        <set name="students" lazy="false">
+            <key column="teacherId"/>
+            <one-to-many class="com.hibernate.entity.Student"/>
+        </set>
+    </class>
+</hibernate-mapping>  
